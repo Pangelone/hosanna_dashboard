@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
     require "net/http"
-    
+
     if params[:lang].nil?
       @lang = "all"
       @period = "today"
@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
     url_prod = "https://apihosanna.contentor.io"
     url_test = "https://daab2c4be2dd.ngrok.io"
 
-    url = URI(url_test + "/v1/get_dashboard_data/" + @lang + "/" + @period)
+    url = URI(url_prod + "/v1/get_dashboard_data/" + @lang + "/" + @period)
 		http = Net::HTTP.new(url.host, url.port)
 		http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
