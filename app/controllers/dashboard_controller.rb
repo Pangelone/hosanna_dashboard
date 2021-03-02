@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
     url_prod = "https://apihosanna.contentor.io"
     url_test = "https://7f1ba8530416.ngrok.io"
 
-    url = URI(url_test + "/v1/get_dashboard_data/" + @lang + "/" + @period)
+    url = URI(url_prod + "/v1/get_dashboard_data/" + @lang + "/" + @period)
 		http = Net::HTTP.new(url.host, url.port)
 		http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
 		request["content-type"] = 'application/json'
 
 		response = http.request(request)
-
+    p request
 		@users = JSON.parse(response.read_body)["users"]
     @intro_ok = JSON.parse(response.read_body)["intro_ok"]
     @monthly_active_purchases = JSON.parse(response.read_body)["monthly_active_purchases"]
