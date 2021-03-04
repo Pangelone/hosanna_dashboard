@@ -22,9 +22,10 @@ class DashboardController < ApplicationController
 		request["content-type"] = 'application/json'
 
 		response = http.request(request)
-    p request
+
 		@users = JSON.parse(response.read_body)["users"]
     @intro_ok = JSON.parse(response.read_body)["intro_ok"]
+    @Intro_ok_porcentaje = (@intro_ok.to_f / @users.to_f * 100).round(2)
     @monthly_active_purchases = JSON.parse(response.read_body)["monthly_active_purchases"]
     @yearly_active_purchases = JSON.parse(response.read_body)["yearly_active_purchases"]
 
