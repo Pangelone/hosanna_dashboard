@@ -184,16 +184,46 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Imagen:
+                                                </div>
+                                                <% unless JSON.parse(push["message"])[0]["payload"]["article"].nil? %>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <img src='<%= JSON.parse(push["message"])[0]["payload"]["article"]["cover_image"] %>' alt="" width="200" height="200" /> 
+                                                    </div>
+                                                <% else %>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <img src='https://farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=b332069b-e792-4635-92ae-021886179fa8&idMultimedia=a17ceecf-2afc-424d-9adb-021ca9a2116c' alt="" width="200" height="200" /> 
+                                                    </div>
+                                                <% end %>
+                                                <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Id:
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                     <%= push["id"] %>
                                                 </div>
                                                 <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    App_Id:
+                                                    Title:
+                                                </div>
+                                                <% unless JSON.parse(push["message"])[0]["payload"]["article"].nil? %>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= JSON.parse(push["message"])[0]["title"] %>                                                    
+                                                    </div>
+                                                <% else %>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        ---
+                                                    </div>
+                                                <% end %>
+                                                <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Send_at:
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <%= push["app_id"] %>
+                                                    <%= push["send_at"] %>
+                                                </div>
+                                                <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Created_at:
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <%= push["created_at"] %>
                                                 </div>
                                                 <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Tipo:
@@ -211,7 +241,7 @@
                                                     Entregados:
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <%= push["delivered"] %>
+                                                    <%= push["delivered"]  %> (<%= (push["delivered"].to_f / push["affected_users"].to_f * 100).round(2)%>%)
                                                 </div>
                                                 <div class="h4 text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Fallidos:
@@ -223,7 +253,7 @@
                                                     Clicks:
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <%= push["clicks"] %>
+                                                    <%= push["clicks"]  %> (<%= (push["clicks"].to_f / push["delivered"].to_f * 100).round(2)%>%)
                                                 </div>
                                             </div>
                                         </div>
