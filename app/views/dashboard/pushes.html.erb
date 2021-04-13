@@ -1,3 +1,4 @@
+
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -174,6 +175,9 @@
             <h3>Momento: <%= @moment %></h3>
             <h3>Tipo: <%= @type %></h3>
             <br>
+
+                <%= line_chart @chart%>
+
                 <!-- Content Row -->
                 <div class="row">
                     <% @pushes.each do |pushess| %>
@@ -271,3 +275,4 @@
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
+

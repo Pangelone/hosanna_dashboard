@@ -13,12 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require sb-admin-2
-//= require sb-admin-2.min
-//= require Chart.min
-//= require chart-area-demo
-//= require chart-bar-demo
-//= require chart-pie-demo
-//= require datatables-demo
 //= require bootstrap.bundle.min
 //= require jquery.easing.min
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
