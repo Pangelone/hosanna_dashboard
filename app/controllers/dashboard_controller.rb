@@ -36,6 +36,7 @@ class DashboardController < ApplicationController
   def contentor_pushes(app_id,type,period = 1)
     from = Date.today - period.to_i.day
     url = URI("http://api.contentor.io/3.11/pushes/#{type}")
+    p url
     http = Net::HTTP.new(url.host, url.port)
     request = Net::HTTP::Get.new(url)
     request["content-type"] = 'application/json'
@@ -57,7 +58,7 @@ class DashboardController < ApplicationController
     @moment = params[:moment]
     @interval = params[:interval]
 
-    if params[:type] = "all" && params[:lang] = "all" && params[:moment] = "all"
+    if params[:type] == "all" && params[:lang] == "all" && params[:moment] == "all"
       @pushes = [
         contentor_pushes(144,"on_demand",@interval),
         contentor_pushes(149,"on_demand",@interval),
@@ -72,7 +73,7 @@ class DashboardController < ApplicationController
         contentor_pushes(152,"subscription",@interval),
         contentor_pushes(153,"subscription",@interval)
       ]
-    elsif params[:type] = "all" && params[:lang] = "all" && params[:moment] != "all"
+    elsif params[:type] == "all" && params[:lang] == "all" && params[:moment] != "all"
       @pushes = [
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["es".to_sym][@moment.to_sym],"subscription",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["en".to_sym][@moment.to_sym],"subscription",@interval),
@@ -81,19 +82,19 @@ class DashboardController < ApplicationController
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["en".to_sym][@moment.to_sym],"on_demand",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["pt".to_sym][@moment.to_sym],"on_demand",@interval),
       ]    
-    elsif params[:type] = "all" && params[:lang] != "all" && params[:moment] = "all"
+    elsif params[:type] == "all" && params[:lang] != "all" && params[:moment] == "all"
       @pushes = [
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["day".to_sym],"subscription",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["night".to_sym],"subscription",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["day".to_sym],"on_demand",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["night".to_sym],"on_demand",@interval),
       ]   
-    elsif params[:type] = "all" && params[:lang] != "all" && params[:moment] != "all"
+    elsif params[:type] == "all" && params[:lang] != "all" && params[:moment] != "all"
       @pushes = [
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym][@moment.to_sym],"subscription",@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym][@moment.to_sym],"on_demand",@interval),
       ]   
-    elsif params[:type] != "all" && params[:lang] = "all" && params[:moment] = "all"
+    elsif params[:type] != "all" && params[:lang] == "all" && params[:moment] == "all"
       @pushes = [
         contentor_pushes(144,@type,@interval),
         contentor_pushes(149,@type,@interval),
@@ -108,13 +109,13 @@ class DashboardController < ApplicationController
         contentor_pushes(152,@type,@interval),
         contentor_pushes(153,@type,@interval)
       ]
-    elsif params[:type] != "all" && params[:lang] = "all" && params[:moment] != "all"
+    elsif params[:type] != "all" && params[:lang] == "all" && params[:moment] != "all"
       @pushes = [
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["es".to_sym][@moment.to_sym],@type,@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["en".to_sym][@moment.to_sym],@type,@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID["pt".to_sym][@moment.to_sym],@type,@interval),
       ]    
-    elsif params[:type] != "all" && params[:lang] != "all" && params[:moment] = "all"
+    elsif params[:type] != "all" && params[:lang] != "all" && params[:moment] == "all"
       @pushes = [
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["day".to_sym],@type,@interval),
         contentor_pushes(CONTENTOR_HOSANNA_APP_ID[@lang.to_sym]["night".to_sym],@type,@interval),
