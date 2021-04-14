@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+// require turbolinks
+//= require jquery.min
 //= require sb-admin-2
 //= require bootstrap.bundle.min
 //= require jquery.easing.min
 //= require chartkick
 //= require Chart.bundle
-//= require_tree .
+// require_tree .
