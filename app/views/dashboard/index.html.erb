@@ -97,7 +97,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/pushes">
+            <a class="nav-link collapsed" href="/pushes/all/all/all/7">
                 <span>Pushes</span>
             </a>
         </li>
@@ -179,40 +179,20 @@
                     <div class="col-md-6 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-header">
-                                Pie chart
+                               Users
                             </div>
                             <div class="card-body">
-                                <%= pie_chart [["Watermelon", 10], ["Orange", 80], ["Grapefruit", 50]] %>
+                                <%= column_chart [["Users", @users], ["Users OK", @intro_ok]] %>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-header">
-                                Column chart
+                                Purchases
                             </div>
                             <div class="card-body">
-                                <%= column_chart [["Watermelon", 10], ["Orange", 80], ["Grapefruit", 50]] %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-header">
-                                Line chart
-                            </div>
-                            <div class="card-body">
-                                <%= line_chart [["Monday", 10], ["Tuesday", 80], ["Wednesday", 50], ["Thursday", 50], ["Friday", 50]] %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-header">
-                                Area chart
-                            </div>
-                            <div class="card-body">
-                                <%= area_chart [["Monday", 10], ["Tuesday", 80], ["Wednesday", 50], ["Thursday", 50], ["Friday", 50]] %>
+                                <%= pie_chart [["Compras anuales", @yearly_active_purchases], ["Compras mensuales", @monthly_active_purchases]] %>
                             </div>
                         </div>
                     </div>
