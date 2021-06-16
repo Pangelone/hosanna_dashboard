@@ -152,23 +152,24 @@ class DashboardController < ApplicationController
       url_test = "https://06e7b4d07a67.ngrok.io"
       slug = params[:slug]
 
-      begin
+      #begin
         if slug.nil?  || slug == ""
           @msj = "Debe completar el slug"
         else            
           url = URI(url_prod + "/v1/remove_premium/" + slug)
+          p url
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
-          #http.verify_mode = OpenSSL::SSL::VERIFY_NONE          
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE          
           request = Net::HTTP::Post.new(url)
           request["content-type"] = 'application/json'
           response = http.request(request)
           data = JSON.parse(response.read_body)
           @msj = data["msj"]
         end
-      rescue 
-        @msj = "Error de formato"
-      end
+      #rescue 
+      #  @msj = "Error de formato"
+      #end
     end
 
 end
