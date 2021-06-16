@@ -1,0 +1,13 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 10;
+}
+
+.hijo {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

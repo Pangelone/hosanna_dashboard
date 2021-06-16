@@ -12,5 +12,6 @@
  *
 *= require_tree .
 *= require sb-admin-2.min
+*= require tools
  *= require_self
  */
