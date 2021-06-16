@@ -157,7 +157,7 @@ class DashboardController < ApplicationController
           if slug.nil?  || slug == ""
             @msj = "Debe completar el slug"
           else            
-            url = URI(url_test + "/v1/remove_premium/" + slug)
+            url = URI(url_prod + "/v1/remove_premium/" + slug)
             http = Net::HTTP.new(url.host, url.port)
             http.use_ssl = true
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
