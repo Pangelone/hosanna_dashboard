@@ -158,6 +158,7 @@ class DashboardController < ApplicationController
         else            
           url = URI(url_prod + "/v1/remove_premium/" + slug)
           p url
+          Net::HTTP.start(url.host, url.port, use_ssl: true)
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE          
